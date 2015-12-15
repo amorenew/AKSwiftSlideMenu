@@ -1,15 +1,16 @@
 //
-//  BaseViewController.swift
-//  AKSwiftSlideMenu
+//  BaseTabViewController.swift
+//  WaveInsure
 //
-//  Created by Ashish on 21/09/15.
-//  Copyright (c) 2015 Kode. All rights reserved.
+//  Created by Amr Abd El Wahab on 12/14/15.
+//  Copyright © 2015 ITGSolutions. All rights reserved.
 //
+
 
 import UIKit
 
-class BaseViewController: UIViewController, SlideMenuDelegate {
-   
+class BaseTabViewController: UITabBarController, SlideMenuDelegate {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,9 +26,9 @@ class BaseViewController: UIViewController, SlideMenuDelegate {
         view.addGestureRecognizer(rightSwipe)
         //Looks for single or multiple taps.
         
-       /* let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
+        /* let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
         view.addGestureRecognizer(tap)*/
-
+        
         
     }
     func setNavigationTitle(title:String){
@@ -38,9 +39,9 @@ class BaseViewController: UIViewController, SlideMenuDelegate {
         self.navigationItem.setHidesBackButton(true, animated:true);
     }
     //Calls this function when the tap is recognized.
-   /* func DismissKeyboard(){
-        //Causes the view (or one of its embedded text fields) to resign the first responder status.
-        view.endEditing(true)
+    /* func DismissKeyboard(){
+    //Causes the view (or one of its embedded text fields) to resign the first responder status.
+    view.endEditing(true)
     }*/
     
     func handleSwipes(sender:UISwipeGestureRecognizer) {
@@ -63,11 +64,11 @@ class BaseViewController: UIViewController, SlideMenuDelegate {
     var isOpened = false;
     
     func slideMenuItemSelectedAtIndex(index: Int) {
-//        let topViewController : UIViewController = self.navigationController!.topViewController!
+        //        let topViewController : UIViewController = self.navigationController!.topViewController!
         var viewController:UIViewController!
         switch(index){
         case MenuMain:
-             viewController =  self.storyboard!.instantiateViewControllerWithIdentifier("MainViewController") as! MainViewController
+            viewController =  self.storyboard!.instantiateViewControllerWithIdentifier("MainViewController") as! MainViewController
             break
         case MenuTabController:
             viewController =  self.storyboard!.instantiateViewControllerWithIdentifier("TabViewController") as! TabViewController
@@ -98,7 +99,7 @@ class BaseViewController: UIViewController, SlideMenuDelegate {
             //self.navigationController?.pushViewController(viewController, animated: true)
             self.navigationController!.setViewControllers([viewController], animated: true)
         }
-
+        
     }
     
     var btnShowMenu:UIButton!
@@ -123,7 +124,7 @@ class BaseViewController: UIViewController, SlideMenuDelegate {
         let backBarButton = UIBarButtonItem(title: title,style:.Done, target: self, action: action)
         self.navigationItem.leftBarButtonItems = [backArrowBarButton , backBarButton]
     }
-    
+
     func onSlideMenuButtonPressed(sender : UIButton){
         if sender.tag == 0 {
             UIView.animateWithDuration(3, animations: { () -> Void in
@@ -164,10 +165,10 @@ class BaseViewController: UIViewController, SlideMenuDelegate {
         sender.enabled = false
         sender.tag = 10
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-
+        
         let menuVC : MenuViewController = storyboard.instantiateViewControllerWithIdentifier("MenuViewController") as! MenuViewController
         menuVC.btnMenu = sender
-       
+        
         menuVC.delegate = self
         self.view.addSubview(menuVC.view)
         self.addChildViewController(menuVC)

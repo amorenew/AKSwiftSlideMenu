@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MainViewController.swift
 //  AKSwiftSlideMenu
 //
 //  Created by Ashish on 21/09/15.
@@ -8,13 +8,14 @@
 
 import UIKit
 
-class ViewController: BaseViewController {
+class MainViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.addSlideMenuButton()
-        
+        self.addSlideMenuButton("left")
+        self.setNavigationTitle("Main")
+
         // Do any additional setup after loading the view, typically from a nib.
     }
 
